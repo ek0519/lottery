@@ -12,8 +12,13 @@ from django.http import HttpResponse
 def lottery(request):
     now = timezone.now()
     if request.method == 'POST':
-        print (request.POST)
         sn = request.POST['sn']
+        try:
+            myfile = request.FILES['myfile']
+        except:
+            myfile = ''
+        if sn == '' or myfile == '' :
+            return redirect('lottery')
         file = request.FILES['myfile']
         fs = FileSystemStorage()
         filename = fs.save(file.name, file)
@@ -27,7 +32,6 @@ def lottery(request):
         else:
             delta = timedelta(minutes=30)
             create_dt = lottery.create_dt
-            print (create_dt)
             if (now - delta) < create_dt:
                 if lottery:
                     lottery.img = url
@@ -56,7 +60,6 @@ def end(request):
     random.shuffle(people)
     person = 1
     show_list = []
-    print(people)
     if request.method == 'POST':
         # select anyone to view
         if people:
@@ -66,8 +69,6 @@ def end(request):
         else:
             person = None
         show_list = Lottery.objects.filter(enabled=1).order_by('update_dt')
-        print('_______')
-        print(show_list)
 
         return render(request, template,{'person':person , 'show':show_list})
 
@@ -76,7 +77,6 @@ def end(request):
 def api(request):
     if request.method == 'POST' or request.method == 'GET':
         people = Lottery.objects.filter(img__contains='.')
-        print(people)
         data = []
         for person in people:
             x = { 'sn':person.sn,
