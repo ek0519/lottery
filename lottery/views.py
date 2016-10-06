@@ -33,3 +33,9 @@ def lottery(request):
         pass
     template = 'lottery/lottery.html'
     return render (request,template)
+
+def end(request):
+    template = 'lottery/end.html'
+    people = Lottery.objects.filter(img__isnull=False)
+    print (len(people))
+    return render(request, template)
