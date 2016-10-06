@@ -1,9 +1,17 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title></title>
+    <title>抽獎頁面</title>
 </head>
 <body>
-
+    {% if person %}<img src="{{ person.img }}" />{% else %}<h1>已經完成開獎</h1>{% endif %}
+     <form method="POST">{% csrf_token %}
+        <button type="submit">抽獎</button>
+    </form>
+    <div>
+        {% for i in show %}
+        <div>{{ forloop.counter }}</div><div>{{ i.sn }}</div>
+        {% endfor %}
+    </div>
 </body>
 </html>

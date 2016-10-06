@@ -1,10 +1,11 @@
 from django.shortcuts import render, redirect
-from .models import Lottery
+from lottery.models import Lottery
 from django.http import HttpResponse
 from annoying.functions import get_object_or_None
 from django.core.files.storage import FileSystemStorage
-from django.utils import six, timezone
+from django.utils import timezone
 from datetime import datetime, timedelta
+import random
 
 # Create your views here.
 def lottery(request):
@@ -32,10 +33,32 @@ def lottery(request):
     else:
         pass
     template = 'lottery/lottery.html'
+    request.session['show'] =[]
     return render (request,template)
 
 def end(request):
     template = 'lottery/end.html'
-    people = Lottery.objects.filter(img__isnull=False)
-    print (len(people))
-    return render(request, template)
+    # get img was not null
+    people = Lottery.objects.filter(img__contains='.',enabled=0)
+    # data save to list
+    people = list(people)
+    # random it!
+    random.shuffle(people)
+    person = 1
+    show_list = []
+    print(people)
+    if request.method == 'POST':
+        # select anyone to view
+        if people:
+            person = people.pop()
+            person.enabled = 1
+            person.save()
+        else:
+            person = None
+        show_list = Lottery.objects.filter(enabled=1).order_by('update_dt')
+        print('_______')
+        print(show_list)
+
+        return render(request, template,{'person':person , 'show':show_list})
+
+    return render(request, template,{'person':person , 'show':show_list})
