@@ -9,4 +9,4 @@ class Lottery(models.Model):
     enabled = models.NullBooleanField(default=False, null=True,blank=True)
 
     def __str__(self):
-        return self.sn +'-used:'+ str(self.enabled)
+        return self.sn +' used:'+ str(self.enabled)

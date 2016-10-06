@@ -21,7 +21,8 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', 'proj.views.index', name='index'),
     url(r'^lottery/$', 'lottery.views.lottery', name='lottery'),
-    url(r'^end/', 'lottery.views.end', name='end')
+    url(r'^api/$', 'lottery.views.api', name='api'),
+    url(r'^end/', 'lottery.views.end', name='end'),
 ]
 
 if settings.DEBUG:

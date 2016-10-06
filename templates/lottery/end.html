@@ -1,17 +1,45 @@
+{# Load the tag library #}
+{% load bootstrap3 %}
+
+{# Load CSS and JavaScript #}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+
+{# Display django.contrib.messages as Bootstrap alerts #}
+{% bootstrap_messages %}
+
+
 <!DOCTYPE html>
 <html>
 <head>
     <title>抽獎頁面</title>
 </head>
 <body>
-    {% if person %}<img src="{{ person.img }}" />{% else %}<h1>已經完成開獎</h1>{% endif %}
-     <form method="POST">{% csrf_token %}
-        <button type="submit">抽獎</button>
+    <div class="container">
+     <form method="POST" role="form" class="form" >{% csrf_token %}
+        <div class="form-group">
+            <div class="col-sm-12">
+                <button type="submit" class="btn btn-primary btn-lg btn-block">抽獎</button>
+            </div>
+        </div>
     </form>
+    <div class="col-sm-12">
+    {% if person %}<img src="{{ person.img }}" class="img-responsive center-block">{% else %}<h1 class="text-center">已經完成開獎</h1>{% endif %}
+    </div>
     <div>
+        <table class="table table-hover">
+        <tr>
+            <td>順序</td>
+            <td>序號</td>
+        </tr>
         {% for i in show %}
-        <div>{{ forloop.counter }}</div><div>{{ i.sn }}</div>
-        {% endfor %}
+            <tr>
+            <td>第{{ forloop.counter }}位</td>
+            <td>{{ i.sn }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
     </div>
 </body>
 </html>
