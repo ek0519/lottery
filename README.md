@@ -13,3 +13,7 @@ cd project_name
 
 ## 4. runserver
 ./manage.py runserver 0.0.0.0:8080  or any port
+
+## 5. Create lottery
+./manage.py gen_lottery  
+將會在資料庫產生12筆連號的8碼序號(00000001-00000012)
