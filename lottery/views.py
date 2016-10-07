@@ -79,8 +79,6 @@ def api(request):
         people = Lottery.objects.filter(img__contains='.')
         data = []
         for person in people:
-            x = { 'sn':person.sn,
-                  'url':person.img.url,
-                  'enabled':person.enabled}
+            x = {person.sn:{'url':person.img.url,'enabled':person.enabled}}
             data.append(x)
         return HttpResponse(json.dumps(data), content_type='application/json')
