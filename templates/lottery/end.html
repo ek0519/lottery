@@ -15,7 +15,9 @@
     <title>抽獎頁面</title>
 </head>
 <body>
+    {% include "base.html" %}
     <div class="container">
+    <div>
      <form method="POST" role="form" class="form" >{% csrf_token %}
         <div class="form-group">
             <div class="col-sm-6">
@@ -23,7 +25,9 @@
             </div>
         </div>
     </form>
-    <form method="POST" class="form-inline" role="form">{% csrf_token %}
+    </div>
+    <div>
+    <form method="POST" class="form" role="form">{% csrf_token %}
         <div class="col-sm-2">
             <input type="number" class='form-control ' min="2" name="number" placeholder="請需要幾組序號">
         </div>
@@ -31,6 +35,7 @@
             <button type="submit" class="btn btn-danger form-control btn-block" name="reset" value="reset">重新設定</button>
         </div>
     </form>
+    </div>
     <div class="col-sm-12">
     {% if person %}<img src="{{ person.img }}" class="img-responsive center-block">{% elif reset %}<h1 class="text-center">已經產生新的 {{ number }} 組序號</h1>{% else %}<h1 class="text-center">已經完成開獎</h1>{% endif %}
     </div>
