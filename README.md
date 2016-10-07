@@ -1,5 +1,8 @@
 # lottery
 
+這是一個產生12組序號，可以依照取得序號大頭照摸彩的小實驗，在產生序號後的30分鐘內可以上傳  
+摸彩摸出的人員會出現列表，不在可摸彩的人員之中，不會重複出現。
+
 ## 1. Create Venv
 python3 -m venv any_name  
 cd any_name  
