@@ -47,7 +47,6 @@ def lottery(request):
     all = Lottery.objects.all()
     total = all.count()
     now = all.filter(img__contains='.').count()
-    print(now)
     return render (request,template,{'total':total,'now':now})
 
 def end(request):
@@ -60,17 +59,38 @@ def end(request):
     random.shuffle(people)
     person = 1
     show_list = []
+    if request.POST.get('number'):
+        Lottery.objects.all().delete()
+        reset = True
+        number = int(request.POST['number'])
+        for i in range(1, number+1):
+            num = ('{:08}'.format(i))
+            lottery = Lottery(sn=num)
+            lottery.save()
+        return render(request, template, {'reset': reset, 'number': number})
+
     if request.method == 'POST':
         # select anyone to view
-        if people:
-            person = people.pop()
-            person.enabled = 1
-            person.save()
-        else:
-            person = None
-        show_list = Lottery.objects.filter(enabled=1).order_by('update_dt')
+        if request.POST.get('open'):
+            print(request)
+            if people:
+                person = people.pop()
+                person.enabled = 1
+                person.save()
+            else:
+                person = None
+            show_list = Lottery.objects.filter(enabled=1).order_by('update_dt')
 
-        return render(request, template,{'person':person , 'show':show_list})
+            return render(request, template,{'person':person , 'show':show_list})
+        elif request.POST.get('reset'):
+            number = Lottery.objects.all().count()
+            Lottery.objects.all().delete()
+            reset = True
+            for i in range(1, number + 1):
+                num = ('{:08}'.format(i))
+                lottery = Lottery(sn=num)
+                lottery.save()
+            return render(request, template, {'reset': reset, 'number': number})
 
     return render(request, template,{'person':person , 'show':show_list})
 

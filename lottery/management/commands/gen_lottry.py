@@ -1,6 +1,6 @@
 from django.core.management.base import BaseCommand
 from lottery.models import Lottery
-from datetime import datetime, timedelta
+from datetime import datetime
 
 tfl = '%Y-%m-%d %H:%M:%S'
 tfs = '%Y/%m/%d'
