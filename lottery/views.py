@@ -57,7 +57,7 @@ def end(request):
     people = list(people)
     # random it!
     random.shuffle(people)
-    person = 1
+    person = 0
     show_list = []
     if request.POST.get('number'):
         Lottery.objects.all().delete()

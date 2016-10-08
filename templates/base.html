@@ -1,9 +1,25 @@
-<div class="container">
-<table class="table table-hover">
-    <tr>
-        <td><h2><a href="{% url 'lottery' %}">大頭照</a></h2></td>
-        <td><h2><a href="{% url 'end' %}">抽獎</a></h2></td>
-        <td><h2><a href="{% url 'api' %}">API</a></h2></td>
-    </tr>
-</table>
-</div>
+{# Load the tag library #}
+{% load bootstrap3 %}
+
+{# Load CSS and JavaScript #}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+
+{# Display django.contrib.messages as Bootstrap alerts #}
+{% bootstrap_messages %}
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{% block title %}{% endblock %}</title>
+</head>
+<body>
+    <ul class="nav nav-tabs nav-justified">
+        <li role="presentation" ><a href="{% url 'lottery' %}">大頭照</a></li>
+        <li role="presentation" ><a href="{% url 'end' %}">抽獎</a></li>
+        <li role="presentation" ><a href="{% url 'api' %}">API</a></li>
+    </ul>
+    {% block content %}{% endblock %}
+</body>
+</html>

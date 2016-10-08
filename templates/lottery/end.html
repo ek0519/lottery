@@ -1,21 +1,6 @@
-{# Load the tag library #}
-{% load bootstrap3 %}
-
-{# Load CSS and JavaScript #}
-{% bootstrap_css %}
-{% bootstrap_javascript %}
-
-{# Display django.contrib.messages as Bootstrap alerts #}
-{% bootstrap_messages %}
-
-
-<!DOCTYPE html>
-<html>
-<head>
-    <title>抽獎頁面</title>
-</head>
-<body>
-    {% include "base.html" %}
+{% extends 'base.html' %}
+{% block titleb %}抽獎{% endblock %}
+{% block content %}
     <div class="container">
     <div>
      <form method="POST" role="form" class="form" >{% csrf_token %}
@@ -37,7 +22,7 @@
     </form>
     </div>
     <div class="col-sm-12">
-    {% if person %}<img src="{{ person.img }}" class="img-responsive center-block">{% elif reset %}<h1 class="text-center">已經產生新的 {{ number }} 組序號</h1>{% else %}<h1 class="text-center">已經完成開獎</h1>{% endif %}
+    {% if person %}<img src="{{ person.img }}" class="img-responsive center-block">{% elif reset %}<h1 class="text-center">已經產生新的 {{ number }} 組序號</h1>{% elif person == 0 %}<h1 class="text-center">目前無任何照片，請上傳大頭照</h1>{% else %}<h1 class="text-center">已經完成開獎</h1>{% endif %}
     </div>
     <div>
         <table class="table table-hover">
@@ -54,5 +39,4 @@
         </table>
     </div>
     </div>
-</body>
-</html>
+{% endblock %}

@@ -1,19 +1,6 @@
-{# Load the tag library #}
-{% load bootstrap3 %}
-
-{# Load CSS and JavaScript #}
-{% bootstrap_css %}
-{% bootstrap_javascript %}
-
-{# Display django.contrib.messages as Bootstrap alerts #}
-{% bootstrap_messages %}
-<!DOCTYPE html>
-<html>
-<head>
-    <title>大頭貼抽獎</title>
-</head>
-<body>
-    {% include "base.html" %}
+{% extends 'base.html' %}
+{% block titleb %}大頭貼{% endblock %}
+{% block content %}
     <div class="container">
     <h1 class="text-center">大頭貼上傳</h1>
     <form method="POST" enctype="multipart/form-data" role="form" class="form">{% csrf_token %}
@@ -40,5 +27,4 @@
         </div>
     </form>
     </div>
-</body>
-</html>
+{% endblock %}
