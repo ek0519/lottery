@@ -7,6 +7,8 @@ from django.utils import timezone
 from datetime import timedelta
 import random, json
 from django.http import HttpResponse
+import os
+from django.conf import settings
 
 # Create your views here.
 def lottery(request):
@@ -85,6 +87,11 @@ def end(request):
         elif request.POST.get('reset'):
             number = Lottery.objects.all().count()
             Lottery.objects.all().delete()
+            pic_path = settings.MEDIA_ROOT
+            print(pic_path)
+            all_pic = os.listdir(pic_path)
+            for pic in all_pic:
+                os.remove(pic_path +'/'+ pic)
             reset = True
             for i in range(1, number + 1):
                 num = ('{:08}'.format(i))

@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'lottery',
     'rest_framework',
     'bootstrap3',
+    'jquery',
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -192,5 +193,5 @@ USE_TZ = True
 STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
 
-STATIC_ROOT = os.path.join(os.path.dirname(BASE_DIR), "static_cdn")
+STATIC_ROOT = os.path.join(os.path.dirname(BASE_DIR)+'proj/', "STATIC")
 MEDIA_ROOT  = os.path.join(os.path.dirname(BASE_DIR), "media_cdn")

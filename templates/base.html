@@ -1,6 +1,7 @@
 {# Load the tag library #}
 {% load bootstrap3 %}
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.js"></script>
 {# Load CSS and JavaScript #}
 {% bootstrap_css %}
 {% bootstrap_javascript %}
@@ -8,14 +9,13 @@
 {# Display django.contrib.messages as Bootstrap alerts #}
 {% bootstrap_messages %}
 
-
 <!DOCTYPE html>
 <html>
 <head>
     <title>{% block title %}{% endblock %}</title>
 </head>
 <body>
-    <ul class="nav nav-tabs nav-justified">
+    <ul class="nav nav-tabs nav-justified ">
         <li role="presentation" ><a href="{% url 'lottery' %}">大頭照</a></li>
         <li role="presentation" ><a href="{% url 'end' %}">抽獎</a></li>
         <li role="presentation" ><a href="{% url 'api' %}">API</a></li>
