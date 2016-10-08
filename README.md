@@ -10,7 +10,7 @@
 
 
 
-## 1. Create Venv
+## 1. 建立Python3的環境
 python3 -m venv any_name  
 cd any_name  
 source bin/activate
