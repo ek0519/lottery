@@ -10,17 +10,18 @@
 
 
 
-## 1. Create Venv
+## 1. 建立Python3的環境
 python3 -m venv any_name  
 cd any_name  
 source bin/activate
 
-## 2. clone
+## 2. clone專案
 git clone https://github.com/ek0519/lottery.git  project_name  
 cd project_name
 
-## 3. pip3 install -r requirement.txt
+## 3. 安裝所有使用到的套件 
+pip3 install -r requirement.txt
 
-## 4. runserver
+## 4. 啟動網站
 ./manage.py runserver 0.0.0.0:8080  or any port
 
